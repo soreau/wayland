@@ -551,6 +551,7 @@
       <entry name="right" value="8"/>
       <entry name="top_right" value="9"/>
       <entry name="bottom_right" value="10"/>
+      <entry name="from_center" value="16"/>
     </enum>
 
     <request name="resize">
