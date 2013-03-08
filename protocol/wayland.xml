@@ -527,7 +527,7 @@
     </request>
   </interface>
 
-  <interface name="wl_shell_surface" version="1">
+  <interface name="wl_shell_surface" version="2">
 
     <description summary="desktop style meta data interface">
       An interface implemented by a wl_surface.  On server side the
@@ -727,6 +727,42 @@
 	The popup_done event is sent out when a popup grab is broken,
 	that is, when the users clicks a surface that doesn't belong
 	to the client owning the popup surface.
+      </description>
+    </event>
+
+    <!-- Version 2 additions -->
+
+    <request name="set_minimized">
+      <description summary="request minimize">
+	A request from the client to notify the compositor that it wants to be
+	minimized.
+      </description>
+    </request>
+
+    <event name="maximize">
+      <description summary="suggest maximize">
+	The maximize event is to signal to the client that it should become
+	maximized.
+      </description>
+    </event>
+
+    <event name="unmaximize">
+      <description summary="suggest unmaximize">
+	The unmaximize event is to signal to the client that it should become
+	unmaximized.
+      </description>
+    </event>
+
+    <event name="minimize">
+      <description summary="minimize notification">
+	The minimize event is to notify the client that it has been minimized.
+      </description>
+    </event>
+
+    <event name="unminimize">
+      <description summary="unminimize notification">
+	The unminimize event is to notify the client that it has been
+	unminimized.
       </description>
     </event>
   </interface>
