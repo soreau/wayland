@@ -21,15 +21,13 @@ The weston compositor is a reference implementation of a wayland
 compositor and the weston repository also includes a few example
 clients.
 
-Building the wayland libraries is fairly simple, aside from libffi,
-they don't have many dependencies:
 
-    $ git clone git://anongit.freedesktop.org/wayland/wayland
-    $ cd wayland
-    $ ./autogen.sh --prefix=PREFIX
-    $ make
-    $ make install
 
-where PREFIX is where you want to install the libraries.  See
-http://wayland.freedesktop.org for more complete build instructions
-for wayland, weston, xwayland and various toolkits.
+This branch of wayland includes some of the latest suggested and necessary
+changes from the community. The intent is to be able to test patches while
+having something more progressive. To build this stack, use the build guide
+http://wayland.freedesktop.org/building.html substituting any repo found here
+https://github.com/soreau using the next branch for each. For example, to
+clone wayland you would use:
+
+git clone https://github.com/soreau/wayland.git -b next
