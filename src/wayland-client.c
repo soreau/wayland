@@ -82,6 +82,7 @@ struct wl_display {
 	struct wl_map objects;
 	struct wl_event_queue queue;
 	struct wl_list event_queue_list;
+	wl_display_shutdown_func_t shutdown_callback;
 	pthread_mutex_t mutex;
 };
 
@@ -423,9 +424,17 @@ display_handle_delete_id(void *data, struct wl_display *display, uint32_t id)
 	pthread_mutex_unlock(&display->mutex);
 }
 
+static void
+display_handle_shutdown(void *data, struct wl_display *display)
+{
+	if(display->shutdown_callback)
+		(*display->shutdown_callback)(display);
+}
+
 static const struct wl_display_listener display_listener = {
 	display_handle_error,
-	display_handle_delete_id
+	display_handle_delete_id,
+	display_handle_shutdown
 };
 
 static int
@@ -1023,6 +1032,21 @@ wl_display_dispatch_pending(struct wl_display *display)
 	display->display_thread = pthread_self();
 
 	return dispatch_queue(display, &display->queue, 0);
+}
+
+/**  Install a listener for shutdown event
+ *
+ *	\param notify the callback to install
+ *
+ *	The shutdown event is triggered when the compositor is about to exit,
+ *	so the callback should perform last chance cleanups as fast as possible.
+ *
+ *	\memberof wl_display
+ */
+void wl_display_set_shutdown_notify(struct wl_display *display,
+		wl_display_shutdown_func_t notify)
+{
+	display->shutdown_callback = notify;
 }
 
 /** Retrieve the last error occurred on a display

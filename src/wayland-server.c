@@ -1099,6 +1099,15 @@ wl_display_destroy(struct wl_display *display)
 {
 	struct wl_socket *s, *next;
 	struct wl_global *global, *gnext;
+	struct wl_client *client, *cnext;
+
+	wl_list_for_each_safe(client, cnext, &display->client_list, link) {
+		wl_resource_queue_event(client->display_resource, WL_DISPLAY_SHUTDOWN);
+	}
+
+	wl_display_flush_clients(display);
+
+	/* XXX: wait a little for all sockets to close */
 
 	wl_signal_emit(&display->destroy_signal, display);
 
