@@ -765,6 +765,13 @@
 	unminimized.
       </description>
     </event>
+
+    <event name="close">
+      <description summary="request the window to close">
+	The close event is sent to signal the client it should close cleanly
+	this shell_surface.
+      </description>
+    </event>
   </interface>
 
   <interface name="wl_surface" version="2">
