@@ -90,6 +90,13 @@
       </description>
       <arg name="id" type="uint" />
     </event>
+    
+    <event name="shutdown">
+      <description summary="notifies compositor shutdown">
+      This event is used to notify clients that the compositor is 
+      about to shutdown.
+      </description>
+    </event>
   </interface>
 
   <interface name="wl_registry" version="1">
