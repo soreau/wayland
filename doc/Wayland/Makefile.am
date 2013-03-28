@@ -8,6 +8,7 @@ publican_sources = \
 	$(srcdir)/en_US/Library.xml \
 	$(srcdir)/en_US/Compositors.xml \
 	$(srcdir)/en_US/Overview.xml \
+	$(srcdir)/en_US/Revision_History.xml \
 	$(srcdir)/en_US/images/icon.svg  \
 	$(srcdir)/en_US/images/wayland-architecture.png \
 	$(srcdir)/en_US/images/wayland.png  \
@@ -63,7 +64,7 @@ Wayland: $(publican_targets)
 	$(AM_V_GEN)$(PUBLICAN) rename --name Wayland \
 		--version "$(WAYLAND_VERSION_MAJOR).$(WAYLAND_VERSION_MINOR)" \
 		--config $(builddir)/publican-copy.cfg
-	$(AM_V_GEN)$(PUBLICAN) build --quiet --lang en-US --format html,pdf \
+	$(AM_V_GEN)$(PUBLICAN) build --quiet --langs en-US --formats html,pdf \
 		--config $(builddir)/publican-copy.cfg
 	@touch Wayland
 
