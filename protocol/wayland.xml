@@ -1294,6 +1294,11 @@
       <arg name="hotspot_y" type="int" summary="y coordinate in surface-relative coordinates"/>
     </request>
 
+    <request name="warp">
+      <arg name="offset_x" type="int" summary="x offset to warp pointer"/>
+      <arg name="offset_y" type="int" summary="y offset to warp pointer"/>
+    </request>
+
     <event name="enter">
       <description summary="enter event">
 	Notification that this seat's pointer is focused on a certain
